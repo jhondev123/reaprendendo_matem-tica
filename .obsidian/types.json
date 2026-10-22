@@ -1,0 +1,15 @@
+{
+  "types": {
+    "tipo": "text",
+    "tema": "text",
+    "conceito": "text",
+    "concluido": "checkbox",
+    "concluido_em": "date",
+    "proxima_revisao": "date",
+    "conteudo_pronto": "checkbox",
+    "questoes": "number",
+    "acertos": "number",
+    "aliases": "aliases",
+    "tags": "tags"
+  }
+}

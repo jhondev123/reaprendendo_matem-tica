@@ -1,0 +1,10 @@
+# Obsidian: estado da interface (muda a cada clique, não precisa ir para o Git)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.trash/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+desktop.ini

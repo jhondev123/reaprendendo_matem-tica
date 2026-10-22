@@ -1,0 +1,338 @@
+filters:
+  and:
+    - not:
+        - file.inFolder("00 - Comece Aqui")
+formulas:
+  status: if(concluido, "✅ Concluído", if(conteudo_pronto, "📘 Pronto para estudar", "📝 Gerar conteúdo"))
+  aproveitamento: if(acertos, (acertos / questoes * 100).toFixed(0) + "%", "")
+properties:
+  file.name:
+    displayName: Nota
+  note.tema:
+    displayName: Tema
+  note.concluido:
+    displayName: Concluído
+  note.concluido_em:
+    displayName: Concluído em
+  note.proxima_revisao:
+    displayName: Próxima revisão
+  note.acertos:
+    displayName: Acertos
+  note.questoes:
+    displayName: Questões
+  formula.status:
+    displayName: Situação
+  formula.aproveitamento:
+    displayName: Aproveitamento
+views:
+  - type: table
+    name: Próximos a estudar
+    filters:
+      and:
+        - tipo == "conceito"
+        - concluido != true
+    order:
+      - file.name
+      - tema
+      - formula.status
+      - concluido
+    sort:
+      - property: file.path
+        direction: ASC
+    limit: 5
+  - type: table
+    name: Revisar hoje
+    filters:
+      and:
+        - tipo == "conceito"
+        - proxima_revisao && proxima_revisao <= today()
+    order:
+      - file.name
+      - tema
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: proxima_revisao
+        direction: ASC
+  - type: table
+    name: Trilha completa
+    filters:
+      and:
+        - tipo == "conceito"
+    order:
+      - file.name
+      - tema
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Treinos
+    filters:
+      and:
+        - tipo == "treino"
+    order:
+      - file.name
+      - tema
+      - acertos
+      - questoes
+      - formula.aproveitamento
+      - concluido
+    sort:
+      - property: file.path
+        direction: ASC
+  - type: table
+    name: Conteúdo a gerar
+    filters:
+      and:
+        - tipo == "conceito"
+        - conteudo_pronto != true
+    order:
+      - file.name
+      - tema
+    sort:
+      - property: file.path
+        direction: ASC
+  - type: table
+    name: Aritmética
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("01 - Aritmética")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Álgebra
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("02 - Álgebra")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Funções
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("03 - Funções")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Exponenciais e Logaritmos
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("04 - Exponenciais e Logaritmos")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Geometria Plana
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("05 - Geometria Plana")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Trigonometria
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("06 - Trigonometria")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Geometria Analítica
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("07 - Geometria Analítica")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Sequências e Séries
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("08 - Sequências e Séries")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Cálculo Diferencial
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("09 - Cálculo Diferencial")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Cálculo Integral
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("10 - Cálculo Integral")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Matrizes e Sistemas Lineares
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("11 - Matrizes e Sistemas Lineares")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Combinatória e Probabilidade
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("12 - Combinatória e Probabilidade")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Estatística Básica
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("13 - Estatística Básica")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
+  - type: table
+    name: Ponte para Machine Learning
+    filters:
+      and:
+        - tipo == "conceito"
+        - file.inFolder("14 - Ponte para Machine Learning")
+    order:
+      - file.name
+      - formula.status
+      - concluido
+      - concluido_em
+      - proxima_revisao
+    sort:
+      - property: file.path
+        direction: ASC
+    summaries:
+      concluido: Checked
